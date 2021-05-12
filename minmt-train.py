@@ -18,6 +18,9 @@ from transformer.Learning import Learning
 from tools.Tools import create_logger, read_dnet
 from transformer.Inference import Inference
 
+sys.stderr = open('error.log', 'w')
+
+
 ######################################################################
 ### Options ##########################################################
 ######################################################################
