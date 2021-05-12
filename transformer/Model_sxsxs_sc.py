@@ -12,10 +12,10 @@ from transformer.Model import Embedding, AddPositionalEncoding, Stacked_Encoder,
 ##############################################################################################################
 ### Encoder_Decoder_sxs_sc ######################################################################################
 ##############################################################################################################
-class Encoder_Decoder_sxs_sc(torch.nn.Module):
+class Encoder_Decoder_sxsxs_sc(torch.nn.Module):
   #https://www.linzehui.me/images/16005200579239.jpg
   def __init__(self, n_layers, ff_dim, n_heads, emb_dim, qk_dim, v_dim, dropout, share_embeddings, share_encoders, src_voc_size, tgt_voc_size, idx_pad):
-    super(Encoder_Decoder_sxs_sc, self).__init__()
+    super(Encoder_Decoder_sxsxs_sc, self).__init__()
     self.idx_pad = idx_pad
     self.src_emb = Embedding(src_voc_size, emb_dim, idx_pad)
     self.tgt_emb = Embedding(tgt_voc_size, emb_dim, idx_pad)
@@ -69,16 +69,16 @@ class Encoder_Decoder_sxs_sc(torch.nn.Module):
     z_xtgt = self.stacked_encoder_t(xtgt, msk_xtgt) #[bs,lxt,ed]
     return z_src, z_xsrc, z_xtgt
 
-  def decode(self, z_src, z_xtgt, tgt, msk_src, msk_xtgt, msk_tgt=None):
+  def decode(self, z_src, z_xsrc, z_xtgt, tgt, msk_src, msk_xsrc, msk_xtgt, msk_tgt=None):
     assert z_src.shape[0] == tgt.shape[0] ### src/tgt batch_sizes must be equal
     #z_src are the embeddings of the source words (encoder) [bs, sl, ed]
     #tgt is the history (words already generated) for current step [bs, lt]
 
-    z_srcxtgt = torch.cat((z_src, z_xtgt), dim=1) #[bs, ls+lxt, ed]
-    msk_srcxtgt = torch.cat((msk_src, msk_xtgt), dim=2) #[bs, 1, ls+lxt]
+    z_srcxsrcxtgt = torch.cat((z_src, z_xsrc, z_xtgt), dim=1)  # [bs, ls+lxt, ed]
+    msk_srcxsrcxtgt = torch.cat((msk_src, msk_xsrc, msk_xtgt), dim=2)  # [bs, 1, ls+lxt]
 
     tgt = self.add_pos_enc(self.tgt_emb(tgt)) #[bs,lt,ed]
-    z_tgt = self.stacked_decoder(z_srcxtgt, tgt, msk_srcxtgt, msk_tgt) #[bs,lt,ed]
+    z_tgt = self.stacked_decoder(z_srcxsrcxtgt, tgt, msk_srcxsrcxtgt, msk_tgt) #[bs,lt,ed]
     ### generator ###
     y = self.generator(z_tgt) #[bs, lt, Vt]
     y = torch.nn.functional.log_softmax(y, dim=-1)
