@@ -301,14 +301,3 @@ if __name__ == '__main__':
 
   toc = time.time()
   logging.info('Done ({:.2f} seconds)'.format(toc-tic))
-
-
-
-
-
-
-
-
-
-
-    

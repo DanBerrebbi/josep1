@@ -148,6 +148,8 @@ if __name__ == '__main__':
     model = Encoder_Decoder_s_s_scc_scc(o.net['n_layers'], o.net['ff_dim'], o.net['n_heads'], o.net['emb_dim'], o.net['qk_dim'], o.net['v_dim'], o.net['dropout'], o.net['share_embeddings'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
   elif o.net['model_type'] == 'sxs_sc':
     model = Encoder_Decoder_sxs_sc(o.net['n_layers'], o.net['ff_dim'], o.net['n_heads'], o.net['emb_dim'], o.net['qk_dim'], o.net['v_dim'], o.net['dropout'], o.net['share_embeddings'], o.net['share_encoders'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
+  elif o.net['model_type'] == 'sxsxs_sc':
+    model = Encoder_Decoder_sxsc_sc(o.net['n_layers'], o.net['ff_dim'], o.net['n_heads'], o.net['emb_dim'], o.net['qk_dim'], o.net['v_dim'], o.net['dropout'], o.net['share_embeddings'],  o.net['share_encoders'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
   elif o.net['model_type'] == 'sxsc_sc':
     model = Encoder_Decoder_sxsc_sc(o.net['n_layers'], o.net['ff_dim'], o.net['n_heads'], o.net['emb_dim'], o.net['qk_dim'], o.net['v_dim'], o.net['dropout'], o.net['share_embeddings'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
   elif o.net['model_type'] == 's_s_scc':
