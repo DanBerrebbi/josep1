@@ -46,7 +46,7 @@ class Encoder_Decoder_sxsxs_sc(torch.nn.Module):
     src = self.add_pos_enc(self.src_emb(src)) #[bs,ls,ed]
     z_src = self.stacked_encoder_s(src, msk_src) #[bs,ls,ed]
     xsrc = self.add_pos_enc(self.src_emb(xsrc)) #[bs,ls,ed]
-    z_xsrc = self.stacked_encoder_t(xsrc, msk_xsrc) #[bs,ls,ed]
+    z_xsrc = self.stacked_encoder_sim(xsrc, msk_xsrc) #[bs,ls,ed]
     xtgt = self.add_pos_enc(self.tgt_emb(xtgt)) #[bs,ls,ed]
     z_xtgt = self.stacked_encoder_t(xtgt, msk_xtgt) #[bs,ls,ed]
 
