@@ -15,7 +15,7 @@ from transformer.Model import Embedding, AddPositionalEncoding, Stacked_Encoder,
 class Encoder_Decoder_sim_sxsc_sc(torch.nn.Module):
   #https://www.linzehui.me/images/16005200579239.jpg
   def __init__(self, n_layers, ff_dim, n_heads, emb_dim, qk_dim, v_dim, dropout, share_embeddings, share_encoders, src_voc_size, tgt_voc_size, idx_pad):
-    super(Encoder_Decoder_sxsxs_sc, self).__init__()
+    super(Encoder_Decoder_sim_sxsc_sc, self).__init__()
     self.idx_pad = idx_pad
     self.src_emb = Embedding(src_voc_size, emb_dim, idx_pad)
     self.tgt_emb = Embedding(tgt_voc_size, emb_dim, idx_pad)
