@@ -9,6 +9,7 @@ from tools.Tools import create_logger, write_dnet
 from transformer.Dataset import Vocab
 from transformer.Model import Encoder_Decoder, save_checkpoint, numparameters
 from transformer.Model_s_s_scc_scc import Encoder_Decoder_s_s_scc_scc
+from transformer.Model_sim_sxsc_sc import Encoder_Decoder_sim_sxsc_sc
 from transformer.Model_sxs_sc import Encoder_Decoder_sxs_sc
 from transformer.Model_sxsxs_sc import Encoder_Decoder_sxsxs_sc
 from transformer.Model_sxsc_sc import Encoder_Decoder_sxsc_sc
@@ -151,6 +152,8 @@ if __name__ == '__main__':
     model = Encoder_Decoder_sxs_sc(o.net['n_layers'], o.net['ff_dim'], o.net['n_heads'], o.net['emb_dim'], o.net['qk_dim'], o.net['v_dim'], o.net['dropout'], o.net['share_embeddings'], o.net['share_encoders'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
   elif o.net['model_type'] == 'sxsxs_sc':
     model = Encoder_Decoder_sxsxs_sc(o.net['n_layers'], o.net['ff_dim'], o.net['n_heads'], o.net['emb_dim'], o.net['qk_dim'], o.net['v_dim'], o.net['dropout'], o.net['share_embeddings'],  o.net['share_encoders'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
+  elif o.net['model_type'] == 'sim_sxsc_sc':
+    model = Encoder_Decoder_sim_sxsc_sc(o.net['n_layers'], o.net['ff_dim'], o.net['n_heads'], o.net['emb_dim'], o.net['qk_dim'], o.net['v_dim'], o.net['dropout'], o.net['share_embeddings'],  o.net['share_encoders'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
   elif o.net['model_type'] == 'sxsc_sc':
     model = Encoder_Decoder_sxsc_sc(o.net['n_layers'], o.net['ff_dim'], o.net['n_heads'], o.net['emb_dim'], o.net['qk_dim'], o.net['v_dim'], o.net['dropout'], o.net['share_embeddings'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
   elif o.net['model_type'] == 's_s_scc':
