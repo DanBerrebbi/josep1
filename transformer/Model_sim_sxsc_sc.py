@@ -33,7 +33,7 @@ class Encoder_Decoder_sxsxs_sc(torch.nn.Module):
     self.generator = Generator(emb_dim, tgt_voc_size)
 
   def type(self):
-    return 'sxsxs_sc'
+    return 'sim_sxsc_sc'
 
   def forward(self, src, xsrc, xtgt, tgt, msk_src, msk_xsrc, msk_xtgt, msk_tgt):
     #src is [bs,ls]
