@@ -14,6 +14,7 @@ from transformer.Model_sxs_sc import Encoder_Decoder_sxs_sc
 from transformer.Model_sxsxs_sc import Encoder_Decoder_sxsxs_sc
 from transformer.Model_sxsc_sc import Encoder_Decoder_sxsc_sc
 from transformer.Model_s_s_scc import Encoder_Decoder_s_s_scc
+from transformer.Model_sim_sxsc_sc import Encoder_Decoder_sim_sxsc_sc
 from transformer.Optimizer import OptScheduler, LabelSmoothing_NLL, LabelSmoothing_KLDiv
 from transformer.Learning import Learning
 from tools.Tools import create_logger, read_dnet
@@ -240,7 +241,7 @@ if __name__ == '__main__':
   elif n['model_type'] == 'sxsc_sc':
     model = Encoder_Decoder_sxsc_sc(n['n_layers'], n['ff_dim'], n['n_heads'], n['emb_dim'], n['qk_dim'], n['v_dim'], n['dropout'], n['share_embeddings'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
   elif n['model_type'] == 'sim_sxsc_sc':
-    model = Encoder_Decoder_sxsxs_sc(n['n_layers'], n['ff_dim'], n['n_heads'], n['emb_dim'], n['qk_dim'], n['v_dim'], n['dropout'], n['share_embeddings'], n['share_encoders'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
+    model = Encoder_Decoder_sim_sxsc_sc(n['n_layers'], n['ff_dim'], n['n_heads'], n['emb_dim'], n['qk_dim'], n['v_dim'], n['dropout'], n['share_embeddings'], n['share_encoders'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
   elif n['model_type'] == 'sxsxs_sc':
     model = Encoder_Decoder_sxsxs_sc(n['n_layers'], n['ff_dim'], n['n_heads'], n['emb_dim'], n['qk_dim'], n['v_dim'], n['dropout'], n['share_embeddings'], n['share_encoders'], len(src_voc), len(tgt_voc), src_voc.idx_pad).to(device)
   elif n['model_type'] == 's_s_scc':
