@@ -49,7 +49,7 @@ class Options():
     self.keep_last_n = 5
     ### optim
     self.noam_scale = 2.0
-    self.noam_warmup = 100   #4000
+    self.noam_warmup = 4000
     self.label_smoothing = 0.1
     self.loss = 'KLDiv'
     self.clip = 0.5
