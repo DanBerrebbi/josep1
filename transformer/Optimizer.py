@@ -13,7 +13,7 @@ class OptScheduler(): ### Adam optimizer with scheduler
     self.scale = scale
     self.size = size
     self._step = step           #initial step
-    self._rate = 0.
+    self._rate = 0.2   # 0.
     
   def lrate(self, step):
     return self.scale * (self.size ** (-0.5) * min(step ** (-0.5), step * self.warmup ** (-1.5)))
